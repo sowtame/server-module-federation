@@ -1,0 +1,19 @@
+{
+  "name": "wmf-ssr",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "host",
+    "remote"
+  ],
+  "scripts": {
+    "start": "lerna run --scope=wmf-ssr_* --parallel start",
+    "build": "lerna run --scope=wmf-ssr_* build",
+    "serve": "lerna run --scope=wmf-ssr_* --parallel serve",
+    "clean": "lerna run --scope=wmf-ssr_* --parallel clean",
+    "e2e:ci": "yarn start & wait-on http-get://localhost:3000/ && npx cypress run --config-file ../cypress/config/cypress.config.ts --config '{\"supportFile\": \"../cypress/support/e2e.ts\"}' --spec \"./e2e/*.cy.ts\" --browser=chrome"
+  },
+  "devDependencies": {
+    "lerna": "3.22.1"
+  }
+}
