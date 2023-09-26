@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": [
-    "app1",
-    "app2"
+    "host",
+    "remote"
   ],
   "scripts": {
     "start": "lerna run --scope=loadable-react-16_* --parallel start",

@@ -1,5 +1,5 @@
 {
-  "name": "loadable-react-16_app2",
+  "name": "loadable-react-16_remote",
   "version": "0.0.0",
   "scripts": {
     "start": "yarn build && yarn serve",

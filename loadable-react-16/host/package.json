@@ -1,5 +1,5 @@
 {
-  "name": "loadable-react-16_app1",
+  "name": "loadable-react-16_host",
   "version": "0.0.0",
   "scripts": {
     "start": "yarn build && yarn serve",
