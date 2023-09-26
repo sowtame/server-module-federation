@@ -5,8 +5,8 @@
     "start": "yarn build && yarn serve",
     "serve": "node dist/server/main.js",
     "build": "yarn build:server && yarn build:client",
-    "build:client": "rimraf dist/client && npx webpack --mode=production --progress --config config/webpack.client.js",
-    "build:server": "rimraf dist/server && npx webpack --mode=production --progress --config config/webpack.server.js"
+    "build:client": "rimraf dist/client && npx webpack --progress --config config/webpack.client.js",
+    "build:server": "rimraf dist/server && npx webpack --progress --config config/webpack.server.js"
   },
   "dependencies": {
     "@loadable/babel-plugin": "^5.13.2",
