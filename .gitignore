@@ -1,2 +1,7 @@
-node_modules/
-dist/
+ssr-splitting/node_modules/
+
+ssr-splitting/host/node_modules/
+ssr-splitting/host/dist
+
+ssr-splitting/remote/node_modules/
+ssr-splitting/remote/dist
