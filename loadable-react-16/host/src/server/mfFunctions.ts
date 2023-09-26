@@ -44,7 +44,7 @@ export const getMfChunks = async (extractor) => {
   mfRenderedComponents.forEach(([appName, component]) => {
     const remoteStats = mfChunks.find((remote) => remote.name === appName)
     remoteStats.exposes[component].forEach((chunk) => {
-      const url = 'http://localhost:3001/static/' + chunk
+      const url = 'http://localhost:8080/static/' + chunk
 
       url.endsWith('.css') ? stylesArr.push(url) : scriptsArr.push(url)
     })
