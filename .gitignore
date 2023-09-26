@@ -5,3 +5,7 @@ ssr-splitting/host/dist
 
 ssr-splitting/remote/node_modules/
 ssr-splitting/remote/dist
+
+
+node_modules/
+dist/
