@@ -1,25 +1,25 @@
-import React from 'react';
-import loadable from '@loadable/component';
+import React from 'react'
+import loadable from '@loadable/component'
 
-import Button from './Button';
+import Button from './Button'
 
 const LoadableButton = loadable(() => import('./Button'), {
   fallback: <div>loading button...</div>,
-});
+})
 
 // ================ WORKAROUND ================
-const LoadableContent = loadable(() => import('app2/Content'), {
+const LoadableContent = loadable(() => import('app2/desktop'), {
   fallback: <div>loading content...</div>,
-});
+})
 
 // workaround: to preload the module from the remote
 if (typeof window === 'undefined') {
-  require('app2/Content');
+  require('app2/desktop')
 }
 // ================ WORKAROUND ================
 
 const App = () => {
-  const [state, setState] = React.useState<string>('');
+  const [state, setState] = React.useState<string>('')
 
   return (
     <div
@@ -39,12 +39,7 @@ const App = () => {
 
       <div style={{ padding: '1rem' }}>
         <h3>Type something into this input</h3>
-        <input
-          type="text"
-          value={state}
-          onChange={e => setState(e.target.value)}
-          placeholder="Luke, I am your father..."
-        />
+        <input type="text" value={state} onChange={(e) => setState(e.target.value)} placeholder="Luke, I am your father..." />
       </div>
 
       <div style={{ padding: '1rem' }}>
@@ -57,7 +52,7 @@ const App = () => {
         <LoadableContent content={state} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
