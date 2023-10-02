@@ -6,7 +6,8 @@
     "serve": "node dist/server/main.js",
     "build": "yarn build:server && yarn build:client",
     "build:client": "rimraf dist/client && npx webpack --progress --config config/webpack.client.js",
-    "build:server": "rimraf dist/server && npx webpack --progress --config config/webpack.server.js"
+    "build:server": "rimraf dist/server && npx webpack --progress --config config/webpack.server.js",
+    "pure": "serve -s dist -l 8080"
   },
   "dependencies": {
     "@loadable/babel-plugin": "^5.13.2",

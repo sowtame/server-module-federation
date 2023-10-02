@@ -10,6 +10,7 @@ const webpackConfig = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    fallback: { path: require.resolve('path-browserify') },
   },
   module: {
     rules: [
@@ -27,6 +28,6 @@ const webpackConfig = {
       },
     ],
   },
-};
+}
 
-module.exports = webpackConfig;
+module.exports = webpackConfig

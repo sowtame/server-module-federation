@@ -9,9 +9,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'app1',
       filename: 'remoteEntry.js',
-      remotes: {
-        app2: 'app2@http://localhost:8080/static/remoteEntry.js',
-      },
+      remotes: {},
       shared: [{ react: deps.react, 'react-dom': deps['react-dom'] }],
     }),
   ],
@@ -20,9 +18,7 @@ module.exports = {
       name: 'app1',
       library: { type: 'commonjs-module' },
       filename: 'remoteEntry.js',
-      remotes: {
-        app2: 'app2@http://localhost:8080/server/remoteEntry.js',
-      },
+      remotes: {},
       shared: [
         {
           react: { requiredVersion: deps.react, eager: true },
@@ -33,9 +29,7 @@ module.exports = {
     new StreamingTargetPlugin({
       name: 'app1',
       library: { type: 'commonjs-module' },
-      remotes: {
-        app2: 'app2@http://localhost:8080/server/remoteEntry.js',
-      },
+      remotes: {},
     }),
   ],
 }

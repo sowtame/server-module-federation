@@ -1,60 +1,35 @@
-import path from 'path';
-import { ChunkExtractor } from '@loadable/server';
-import {
-  RenderAndExtractContextFunction,
-  RenderAndExtractContextResult,
-} from './renderAndExtractContext';
-import { getLoadableRequiredComponents } from './mfFunctions';
+import App from '../client/components/App'
+import { renderToString } from 'react-dom/server'
+import React from 'react'
+import { injectScript } from '@module-federation/utilities'
 
 export default async function serverRender(req, res, next) {
-  const nodeExtractor = new ChunkExtractor({
-    statsFile: path.resolve(path.join(process.cwd(), 'dist/server'), 'loadable-stats.json'),
-    entrypoints: ['serverAppEntrypoint'],
-  });
-  const clientExtractor = new ChunkExtractor({
-    statsFile: path.resolve(path.join(process.cwd(), 'dist/client'), 'loadable-stats.json'),
-    entrypoints: ['clientAppEntrypoint'],
-  });
+  // fake import needed in order to tell webpack to include chunk loading runtime code
+  // @ts-ignore
+  // import('fake')
 
-  res.statusCode = 200;
-  res.setHeader('Content-type', 'text/html');
-  res.write('<!DOCTYPE html>');
-  res.write('<html>');
+  const container = await injectScript({
+    global: 'app2',
+    url: 'http://localhost:8080/server/remoteEntry.js',
+  })
 
-  const entrypoint = nodeExtractor.requireEntrypoint();
+  const factory = await container.get('./desktop')
 
-  let renderAndExtractContext = entrypoint[
-    'renderAndExtractContext'
-  ] as RenderAndExtractContextFunction;
+  const RemoteModule = factory()
 
-  // TODO: investigate why nodeExtractor is not returning the function and remove this fallback
-  if (!renderAndExtractContext) {
-    console.warn('renderAndExtractContext is undefined - trying to get it from default');
-    renderAndExtractContext = (await import('./serverAppEntrypoint')).renderAndExtractContext;
-  }
+  const html = renderToString(<App RemoteApp={RemoteModule.default} />)
+  res.statusCode = 200
+  res.setHeader('Content-type', 'text/html')
+  res.write('<!DOCTYPE html>')
+  res.write('<html>')
 
-  const result = await renderAndExtractContext({
-    // req,
-    chunkExtractor: clientExtractor,
-  });
+  res.write(`<body>`)
+  res.write(`<div id="root">${html}</div>`)
 
-  console.log(
-    'getLoadableRequiredComponents nodeExtractor',
-    getLoadableRequiredComponents(nodeExtractor),
-  );
-  console.log(
-    'getLoadableRequiredComponents clientExtractor',
-    getLoadableRequiredComponents(clientExtractor),
-  );
+  res.write('<script async data-chunk="main" src="http://localhost:8081/static/clientAppEntrypoint.js"></script>')
+  res.write('<script async src="http://localhost:8080/static/remoteEntry.js"></script>')
+  res.write('</body></html>')
+  res.send()
 
-  const { markup, linkTags, scriptTags } = result as RenderAndExtractContextResult;
-
-  res.write(`<head>${linkTags}</head><body>`);
-  res.write(`<div id="root">${markup}</div>`);
-
-  res.write(scriptTags);
-  res.write('</body></html>');
-  res.send();
-
-  next();
+  next()
 }

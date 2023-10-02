@@ -1,25 +1,19 @@
+import { importRemote } from '@module-federation/utilities'
 import React from 'react'
+
 import loadable from '@loadable/component'
 
-import Button from './Button'
+const LoadableContent = loadable(() =>
+  importRemote({
+    url: 'http://localhost:8080/static',
+    scope: 'app2',
+    module: './desktop',
+    bustRemoteEntryCache: false,
+  })
+)
 
-const LoadableButton = loadable(() => import('./Button'), {
-  fallback: <div>loading button...</div>,
-})
-
-// ================ WORKAROUND ================
-const LoadableContent = loadable(() => import('app2/desktop'), {
-  fallback: <div>loading content...</div>,
-})
-
-// workaround: to preload the module from the remote
-if (typeof window === 'undefined') {
-  require('app2/desktop')
-}
-// ================ WORKAROUND ================
-
-const App = () => {
-  const [state, setState] = React.useState<string>('')
+const App = ({ RemoteApp }) => {
+  const [state, setState] = React.useState<string>('11')
 
   return (
     <div
@@ -43,14 +37,12 @@ const App = () => {
       </div>
 
       <div style={{ padding: '1rem' }}>
-        <Button label="Regular Button" />
+        {RemoteApp && <RemoteApp content={state} />}
 
-        <LoadableButton label="Loadable Button" />
-      </div>
-
-      <div style={{ padding: '1rem' }}>
         <LoadableContent content={state} />
       </div>
+
+      <div style={{ padding: '1rem' }}></div>
     </div>
   )
 }

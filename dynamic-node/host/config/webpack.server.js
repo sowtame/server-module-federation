@@ -1,8 +1,9 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const LoadablePlugin = require('@loadable/webpack-plugin');
-const shared = require('./webpack.shared');
-const moduleFederationPlugin = require('./module-federation');
+const path = require('path')
+const { merge } = require('webpack-merge')
+const LoadablePlugin = require('@loadable/webpack-plugin')
+const shared = require('./webpack.shared')
+const moduleFederationPlugin = require('./module-federation')
+const webpack = require('webpack')
 
 /**
  * @type {import('webpack').Configuration}
@@ -11,8 +12,7 @@ const webpackConfig = {
   name: 'server',
   target: false,
   entry: {
-    main: ['@babel/polyfill', path.resolve(__dirname, '../src/server/index')],
-    serverAppEntrypoint: path.resolve(__dirname, '../src/server/serverAppEntrypoint'),
+    main: ['webpack/hot/poll?1000', '@babel/polyfill', path.resolve(__dirname, '../src/server/index')],
   },
   externals: {
     express: 'express',
@@ -27,11 +27,13 @@ const webpackConfig = {
       writeToDisk: true,
     }),
 
+    new webpack.HotModuleReplacementPlugin(),
+
     ...moduleFederationPlugin.server,
   ],
   stats: {
     colors: true,
   },
-};
+}
 
-module.exports = merge(shared, webpackConfig);
+module.exports = merge(shared, webpackConfig)
