@@ -23,6 +23,9 @@ export default async function serverRender(req, res, next) {
   res.write('<!DOCTYPE html>')
   res.write('<html>')
 
+  res.write(`<head>`)
+  res.write(`<link rel="stylesheet" href="http://localhost:8080/static/src_client_clientRender_tsx.css"/>`)
+  res.write(`</head>`)
   res.write(`<body>`)
   res.write(`<div id="root">${html}</div>`)
 
