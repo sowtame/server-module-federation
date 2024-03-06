@@ -6,7 +6,7 @@ export interface ContentProps {
   content?: string
 }
 
-const LazyComponent = loadable(() => import('./lazy'), {
+const LazyComponent = loadable(() => import('./modal-view'), {
   fallback: <div>loading content...</div>,
 })
 
