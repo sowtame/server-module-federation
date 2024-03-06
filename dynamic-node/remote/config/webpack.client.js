@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge')
 const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
+const WebpackAssetsManifest = require('webpack-assets-manifest')
 
 module.exports = merge(shared, {
   name: 'client',
@@ -19,6 +20,22 @@ module.exports = merge(shared, {
   plugins: [
     new LoadablePlugin({
       writeToDisk: true,
+    }),
+    new WebpackAssetsManifest({
+      output: 'crititcal-css.json',
+      publicPath: true,
+      transform: (assets, manifest) => {
+        console.log('🚀 ~ file: webpack.client.js:27 ~ assets', assets)
+
+        const onlyCss = Object.values(assets).filter((key) => {
+          if (key.includes('css')) {
+            return true
+          }
+        })
+
+        console.log(onlyCss)
+        return onlyCss
+      },
     }),
 
     ...moduleFederationPlugin.client,

@@ -1,6 +1,7 @@
 import App from '../client/components/App'
 import { renderToString } from 'react-dom/server'
 import React from 'react'
+import axios from 'axios'
 import { injectScript } from '@module-federation/utilities'
 
 export default async function serverRender(req, res, next) {
@@ -13,6 +14,9 @@ export default async function serverRender(req, res, next) {
     url: 'http://localhost:8080/server/remoteEntry.js',
   })
 
+  const { data } = await axios.get<string[]>('http://localhost:8080/static/crititcal-css.json')
+  console.log('🚀 ~ file: serverRender.tsx:18 ~ serverRender ~ criticalCss', data)
+
   const factory = await container.get('./desktop')
 
   const RemoteModule = factory()
@@ -24,7 +28,11 @@ export default async function serverRender(req, res, next) {
   res.write('<html>')
 
   res.write(`<head>`)
-  res.write(`<link rel="stylesheet" href="http://localhost:8080/static/src_client_clientRender_tsx.css"/>`)
+  {
+    data.map((href) => {
+      res.write(`<link rel="stylesheet" href="${href}"/>`)
+    })
+  }
   res.write(`</head>`)
   res.write(`<body>`)
   res.write(`<div id="root">${html}</div>`)

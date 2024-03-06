@@ -17,6 +17,7 @@
     "@loadable/server": "^5.15.2",
     "@loadable/webpack-plugin": "^5.15.2",
     "@module-federation/utilities": "^3.0.0",
+    "axios": "^1.6.7",
     "express": "4.18.2",
     "path-browserify": "^1.0.1",
     "react": "^16",
