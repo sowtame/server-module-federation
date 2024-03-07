@@ -17,7 +17,7 @@ const Remote: React.FC<ContentProps> = (props: ContentProps) => {
         <Route exact path="/">
           <HomePage content={props.content} />
         </Route>
-        <Route exact path="/1">
+        <Route exact path="/second">
           <div className={c.container} style={{ padding: '1rem', borderRadius: '0.25rem', border: '4px dashed #228b22' }}>
             <h2>App 2: 2 page</h2>
             <Button>@alfalab/core-components/button</Button>

@@ -21,7 +21,7 @@ export const HomePage = ({ content }: Props) => {
         Custom text: <strong>{content}</strong>
       </p>
       <p>
-        <Link to="/2">second page</Link>
+        <Link to="/second">second page</Link>
       </p>
 
       <button onClick={() => setOpen(!open)}>toggle lazy</button>
