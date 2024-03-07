@@ -25,7 +25,7 @@ export default async function serverRender(req, res, next) {
 
   const RemoteModule = factory()
 
-  const html = renderToString(<App RemoteApp={RemoteModule.default} />)
+  const markup = renderToString(<App RemoteApp={RemoteModule.default} />)
   res.statusCode = 200
   res.setHeader('Content-type', 'text/html')
   res.write('<!DOCTYPE html>')
@@ -39,7 +39,7 @@ export default async function serverRender(req, res, next) {
   }
   res.write(`</head>`)
   res.write(`<body>`)
-  res.write(`<div id="root">${html}</div>`)
+  res.write(`<div id="root">${markup}</div>`)
 
   res.write('<script async data-chunk="main" src="http://localhost:8081/static/index.js"></script>')
   res.write('<script async src="http://localhost:8080/static/remoteEntry.js"></script>')
