@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet'
 
+import './styles.css'
+
 import Remote from '../remote'
 import { useState } from 'react'
 

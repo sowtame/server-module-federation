@@ -28,18 +28,6 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
-      {
-        test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [

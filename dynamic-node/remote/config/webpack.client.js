@@ -5,6 +5,10 @@ const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const LazyComponentsPlugin = require('./plugins/lazy-components')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.modules\.css$/
 
 module.exports = merge(shared, {
   name: 'client',
@@ -17,6 +21,48 @@ module.exports = merge(shared, {
     filename: '[name].js',
     chunkFilename: '[name].js',
     publicPath: 'http://localhost:8080/static/',
+  },
+  module: {
+    rules: [
+      {
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                config: path.resolve(__dirname, './postcss.config.js'),
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: cssModuleRegex,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                config: path.resolve(__dirname, './postcss.config.js'),
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new LoadablePlugin(),
