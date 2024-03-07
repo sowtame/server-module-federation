@@ -4,10 +4,6 @@ import axios from 'axios'
 import { injectScript } from '@module-federation/utilities'
 
 export default async function serverRender(req, res, next) {
-  // fake import needed in order to tell webpack to include chunk loading runtime code
-  // @ts-ignore
-  // import('fake')
-
   const container = await injectScript({
     global: 'app2',
     url: 'http://localhost:8080/server/remoteEntry.js',

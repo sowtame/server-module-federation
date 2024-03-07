@@ -1,8 +1,9 @@
 import { hydrate } from 'react-dom'
-import { loadableReady } from '@loadable/component'
 
 import RootDev from './root'
 
-loadableReady(() => {
+const init = () => {
   hydrate(<RootDev />, document.getElementById('root'))
-})
+}
+
+init()
