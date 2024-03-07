@@ -3,7 +3,11 @@ import { Helmet } from 'react-helmet'
 import Remote from '../remote'
 import { useState } from 'react'
 
-const RootDev = () => {
+type Props = {
+  url: string
+}
+
+const RootDev = ({ url }: Props) => {
   const [state, setState] = useState<string>('')
 
   return (
@@ -31,7 +35,7 @@ const RootDev = () => {
       </div>
 
       <div style={{ padding: '1rem' }}>
-        <Remote content={state} />
+        <Remote content={state} url={url} />
       </div>
     </div>
   )

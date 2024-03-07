@@ -21,7 +21,7 @@ export default async function serverRender(req, res, next) {
 
   const RemoteModule = factory()
 
-  const markup = renderToString(<App RemoteApp={RemoteModule.default} />)
+  const markup = renderToString(<App url={req.url} RemoteApp={RemoteModule.default} />)
   res.statusCode = 200
   res.setHeader('Content-type', 'text/html')
   res.write('<!DOCTYPE html>')

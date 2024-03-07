@@ -1,8 +1,9 @@
 import { renderToString } from 'react-dom/server'
-import App from '../client/root'
+import { Request } from 'express'
+import RootDev from '../client/root'
 
-export default async function serverRender(req, res, next) {
-  const markup = renderToString(<App />)
+export default async function serverRender(req: Request, res, next) {
+  const markup = renderToString(<RootDev url={req.url} />)
 
   res.statusCode = 200
   res.setHeader('Content-type', 'text/html')

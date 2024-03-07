@@ -12,7 +12,7 @@ const LoadableContent = loadable(() =>
   })
 )
 
-const App = ({ RemoteApp }) => {
+const App = ({ RemoteApp, url }) => {
   const [state, setState] = useState<string>('11')
 
   return (
@@ -37,9 +37,9 @@ const App = ({ RemoteApp }) => {
       </div>
 
       <div style={{ padding: '1rem' }}>
-        {RemoteApp && <RemoteApp content={state} />}
+        {RemoteApp && <RemoteApp content={state} url={url} />}
 
-        <LoadableContent content={state} />
+        <LoadableContent content={state} url={url} />
       </div>
 
       <div style={{ padding: '1rem' }}></div>
