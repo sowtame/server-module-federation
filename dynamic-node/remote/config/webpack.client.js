@@ -10,7 +10,7 @@ module.exports = merge(shared, {
   name: 'client',
   target: 'web',
   entry: {
-    clientAppEntrypoint: ['@babel/polyfill', path.resolve(__dirname, '../src/client/clientAppEntrypoint')],
+    clientAppEntrypoint: ['@babel/polyfill', path.resolve(__dirname, '../src/client/index')],
   },
   output: {
     path: path.resolve(__dirname, '../dist/client'),
@@ -26,28 +26,22 @@ module.exports = merge(shared, {
     new WebpackAssetsManifest({
       output: 'crititcal-css.json',
       publicPath: true,
-      entrypoints: true,
-      contextRelativeKeys: true,
-      entrypointsUseAssets: true,
 
-      // transform: (assets, manifest) => {
-      //   console.log('🚀 ~ file: webpack.client.js:27 ~ assets', assets)
+      transform: (assets, manifest) => {
+        const onlyCss = Object.values(assets).filter((key) => {
+          if (key.includes('css')) {
+            return true
+          }
+        })
 
-      //   const onlyCss = Object.values(assets).filter((key) => {
-      //     if (key.includes('css')) {
-      //       return true
-      //     }
-      //   })
-
-      //   console.log(onlyCss)
-      //   return onlyCss
-      // },
-      customize: (entry, _, manifest, a, b) => {
-        if (entry.key.includes('css')) {
-          debugger
-        }
-        return entry
+        return onlyCss
       },
+      // customize: (entry, _, manifest, a, b) => {
+      //   if (entry.key.includes('css')) {
+      //     debugger
+      //   }
+      //   return entry
+      // },
     }),
 
     ...moduleFederationPlugin.client,

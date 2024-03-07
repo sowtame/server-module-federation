@@ -10,7 +10,7 @@ module.exports = {
       name: 'app2',
       filename: 'remoteEntry.js',
       exposes: {
-        './desktop': './src/client/components/Content',
+        './desktop': './src/client/remote',
       },
       remotes: {},
       shared: [{ react: deps.react, 'react-dom': deps['react-dom'] }],
@@ -22,7 +22,7 @@ module.exports = {
       library: { type: 'commonjs-module' },
       filename: 'remoteEntry.js',
       exposes: {
-        './desktop': './src/client/components/Content',
+        './desktop': './src/client/remote',
       },
       remotes: {},
       shared: [{ react: { requiredVersion: deps.react, eager: true }, 'react-dom': deps['react-dom'] }],

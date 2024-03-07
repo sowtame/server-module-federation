@@ -1,23 +1,21 @@
-import React from 'react';
+import React from 'react'
 // import { Request } from 'express';
-import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
-import { renderToString } from 'react-dom/server';
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server'
+import { renderToString } from 'react-dom/server'
 
 // import App from '../client/components/App';
 
 export type RenderAndExtractContextOptions = {
   // req: Request;
-  chunkExtractor: ChunkExtractor;
-};
+  chunkExtractor: ChunkExtractor
+}
 export type RenderAndExtractContextResult = {
-  markup: string;
-  linkTags: string;
-  scriptTags: string;
-};
+  markup: string
+  linkTags: string
+  scriptTags: string
+}
 
-export type RenderAndExtractContextFunction = (
-  options: RenderAndExtractContextOptions,
-) => Promise<RenderAndExtractContextResult>;
+export type RenderAndExtractContextFunction = (options: RenderAndExtractContextOptions) => Promise<RenderAndExtractContextResult>
 
 export async function renderAndExtractContext({
   // express objects
@@ -25,7 +23,7 @@ export async function renderAndExtractContext({
   // @loadable chunk extractor
   chunkExtractor,
 }: RenderAndExtractContextOptions) {
-  const { default: App } = await import('../client/components/App');
+  const { default: App } = await import('../client/root')
 
   // ================ WORKAROUND ================
   // This not work, The ChunkExtractorManager context provider
@@ -35,16 +33,16 @@ export async function renderAndExtractContext({
   const markup = renderToString(
     <ChunkExtractorManager {...{ extractor: chunkExtractor }}>
       <App />,
-    </ChunkExtractorManager>,
-  );
+    </ChunkExtractorManager>
+  )
   // ================ WORKAROUND ================
 
-  const linkTags = chunkExtractor.getLinkTags();
-  const scriptTags = chunkExtractor.getScriptTags();
+  const linkTags = chunkExtractor.getLinkTags()
+  const scriptTags = chunkExtractor.getScriptTags()
 
   return {
     markup,
     linkTags,
     scriptTags,
-  };
+  }
 }

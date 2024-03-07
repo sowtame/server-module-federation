@@ -3,7 +3,7 @@ import c from './styles.modules.css'
 
 import loadable from '@loadable/component'
 
-const LazyNestedComponent = loadable(() => import('../nested/lazy'), {
+const LazyNestedComponent = loadable(() => import('./components/nested/lazy'), {
   fallback: <div>loading content...</div>,
 })
 
