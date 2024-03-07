@@ -25,7 +25,9 @@ module.exports = {
         './desktop': './src/client/remote',
       },
       remotes: {},
-      shared: [{ react: { requiredVersion: deps.react, eager: true }, 'react-dom': deps['react-dom'] }],
+      shared: [
+        { react: { requiredVersion: deps.react, singleton: true }, 'react-dom': { requiredVersion: deps['react-dom'], singleton: true } },
+      ],
     }),
     new StreamingTargetPlugin({
       name: 'app2',

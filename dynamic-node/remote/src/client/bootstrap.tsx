@@ -1,9 +1,9 @@
-import { hydrate } from 'react-dom'
+import { hydrateRoot } from 'react-dom/client'
 
 import RootDev from './root'
 
 const init = () => {
-  hydrate(<RootDev />, document.getElementById('root'))
+  hydrateRoot(document.getElementById('root'), <RootDev />)
 }
 
 init()

@@ -21,8 +21,8 @@ module.exports = {
       remotes: {},
       shared: [
         {
-          react: { requiredVersion: deps.react, eager: true },
-          'react-dom': { requiredVersion: deps['react-dom'], eager: true },
+          react: { requiredVersion: deps.react, singleton: true },
+          'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
         },
       ],
     }),
