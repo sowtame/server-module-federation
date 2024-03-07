@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import c from './styles.modules.css'
 import loadable from '@loadable/component'
 
@@ -19,10 +18,9 @@ const Remote: React.FC<ContentProps> = (props: ContentProps) => {
   return (
     <AppMounter>
       <Switch>
-        <Route path="/about">
+        <Route path="/1">
           <div className={c.container} style={{ padding: '1rem', borderRadius: '0.25rem', border: '4px dashed #228b22' }}>
-            <h2>App 2: Content</h2>
-            <p>This is the content from app2.</p>
+            <h2>App 2: 1 page</h2>
             <p>
               Custom text: <strong>{props.content}</strong>
             </p>
@@ -31,9 +29,9 @@ const Remote: React.FC<ContentProps> = (props: ContentProps) => {
             <LazyComponent />
           </div>
         </Route>
-        <Route path="/about2">
+        <Route path="/2">
           <div className={c.container} style={{ padding: '1rem', borderRadius: '0.25rem', border: '4px dashed #228b22' }}>
-            <h2>App 2: abount page</h2>
+            <h2>App 2: 2 page</h2>
           </div>
         </Route>
       </Switch>

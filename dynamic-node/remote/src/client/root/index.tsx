@@ -1,10 +1,10 @@
-import React from 'react'
 import { Helmet } from 'react-helmet'
 
 import Remote from '../remote'
+import { useState } from 'react'
 
 const RootDev = () => {
-  const [state, setState] = React.useState<string>('')
+  const [state, setState] = useState<string>('')
 
   return (
     <div

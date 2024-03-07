@@ -1,7 +1,6 @@
-import React from 'react'
 import { hydrate } from 'react-dom'
 
-import App from './components/App'
+import App from './root'
 import { importRemote } from '@module-federation/utilities'
 import { loadWmfComponent } from './utils/load-wmf-component'
 

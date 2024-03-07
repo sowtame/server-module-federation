@@ -1,4 +1,3 @@
-import React from 'react'
 // import { Request } from 'express';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server'
 import { renderToString } from 'react-dom/server'

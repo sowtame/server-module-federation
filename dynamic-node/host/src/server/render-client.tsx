@@ -1,6 +1,5 @@
-import App from '../client/components/App'
+import App from '../client/root'
 import { renderToString } from 'react-dom/server'
-import React from 'react'
 import axios from 'axios'
 import { injectScript } from '@module-federation/utilities'
 
@@ -14,8 +13,13 @@ export default async function serverRender(req, res, next) {
     url: 'http://localhost:8080/server/remoteEntry.js',
   })
 
-  const { data } = await axios.get<string[]>('http://localhost:8080/static/crititcal-css.json')
-  console.log('🚀 ~ file: serverRender.tsx:18 ~ serverRender ~ criticalCss', data)
+  let cssLinks = []
+
+  try {
+    const { data } = await axios.get<string[]>('http://localhost:8080/static/crititcal-css.json')
+
+    cssLinks = data
+  } catch (error) {}
 
   const factory = await container.get('./desktop')
 
@@ -29,7 +33,7 @@ export default async function serverRender(req, res, next) {
 
   res.write(`<head>`)
   {
-    data.map((href) => {
+    cssLinks.map((href) => {
       res.write(`<link rel="stylesheet" href="${href}"/>`)
     })
   }
@@ -37,7 +41,7 @@ export default async function serverRender(req, res, next) {
   res.write(`<body>`)
   res.write(`<div id="root">${html}</div>`)
 
-  res.write('<script async data-chunk="main" src="http://localhost:8081/static/clientAppEntrypoint.js"></script>')
+  res.write('<script async data-chunk="main" src="http://localhost:8081/static/index.js"></script>')
   res.write('<script async src="http://localhost:8080/static/remoteEntry.js"></script>')
   res.write('</body></html>')
   res.send()

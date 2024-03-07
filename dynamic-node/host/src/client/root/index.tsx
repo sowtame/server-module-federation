@@ -1,7 +1,7 @@
 import { importRemote } from '@module-federation/utilities'
-import React from 'react'
 
 import loadable from '@loadable/component'
+import { useState } from 'react'
 
 const LoadableContent = loadable(() =>
   importRemote({
@@ -13,7 +13,7 @@ const LoadableContent = loadable(() =>
 )
 
 const App = ({ RemoteApp }) => {
-  const [state, setState] = React.useState<string>('11')
+  const [state, setState] = useState<string>('11')
 
   return (
     <div
