@@ -16,7 +16,7 @@ export const HomePage = ({ content }: Props) => {
 
   return (
     <div className={c.container} style={{ padding: '1rem', borderRadius: '0.25rem', border: '4px dashed #228b22' }}>
-      <h2>App 2: 1 page</h2>
+      <h2>App 2: home page 1</h2>
       <p>
         Custom text: <strong>{content}</strong>
       </p>

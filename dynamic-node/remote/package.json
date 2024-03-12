@@ -5,8 +5,8 @@
     "start": "yarn build && yarn serve",
     "serve": "node dist/server/main.js",
     "build": "yarn build:server && yarn build:client",
-    "build:client": "rimraf dist/client && npx webpack --progress --config config/webpack.client.js",
-    "build:server": "rimraf dist/server && npx webpack --progress --config config/webpack.server.js",
+    "build:client": "rimraf dist/client && npx webpack --mode=development --progress --config config/webpack.client.js",
+    "build:server": "rimraf dist/server && npx webpack --mode=development --progress --config config/webpack.server.js",
     "pure": "serve -s dist -l 8080"
   },
   "dependencies": {
@@ -43,6 +43,7 @@
     "null-loader": "^4.0.1",
     "postcss": "^8.4.35",
     "postcss-import": "^15.0.0",
+    "postcss-loader": "^8.1.1",
     "rimraf": "3.0.2",
     "webpack": "5.80.0",
     "webpack-assets-manifest": "^5.2.1",

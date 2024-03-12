@@ -1,10 +1,10 @@
 import App from '../client/root'
 import { renderToString } from 'react-dom/server'
 import axios from 'axios'
-import { injectScript } from '@module-federation/utilities'
+import { loadServerRemote } from './utils/load-server-remote'
 
 export default async function serverRender(req, res, next) {
-  const container = await injectScript({
+  const container = await loadServerRemote({
     global: 'app2',
     url: 'http://localhost:8080/server/remoteEntry.js',
   })
@@ -22,6 +22,7 @@ export default async function serverRender(req, res, next) {
   const RemoteModule = factory()
 
   const markup = renderToString(<App url={req.url} RemoteApp={RemoteModule.default} />)
+
   res.statusCode = 200
   res.setHeader('Content-type', 'text/html')
   res.write('<!DOCTYPE html>')
