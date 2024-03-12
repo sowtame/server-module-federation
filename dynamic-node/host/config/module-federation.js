@@ -10,7 +10,10 @@ module.exports = {
       name: 'app1',
       filename: 'remoteEntry.js',
       remotes: {},
-      shared: [{ react: deps.react, 'react-dom': deps['react-dom'] }],
+      shared: {
+        react: { requiredVersion: deps.react, singleton: true },
+        'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
+      },
     }),
   ],
   server: [
@@ -19,12 +22,10 @@ module.exports = {
       library: { type: 'commonjs-module' },
       filename: 'remoteEntry.js',
       remotes: {},
-      shared: [
-        {
-          react: { requiredVersion: deps.react, eager: true },
-          'react-dom': { requiredVersion: deps['react-dom'], eager: true },
-        },
-      ],
+      shared: {
+        react: { requiredVersion: deps.react, singleton: true },
+        'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
+      },
     }),
     new StreamingTargetPlugin({
       name: 'app1',

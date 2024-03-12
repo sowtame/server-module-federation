@@ -1,6 +1,9 @@
 /**
  * @type {import('webpack').Configuration}
  **/
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -27,4 +30,10 @@ module.exports = {
       },
     ],
   },
-};
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash:8].css',
+      chunkFilename: '[name].[contenthash:8].chunk.css',
+    }),
+  ],
+}

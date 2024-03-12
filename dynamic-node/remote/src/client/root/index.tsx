@@ -1,19 +1,16 @@
-import { importRemote } from '@module-federation/utilities'
-import React from 'react'
+import { Helmet } from 'react-helmet'
 
-import loadable from '@loadable/component'
+import './styles.css'
 
-const LoadableContent = loadable(() =>
-  importRemote({
-    url: 'http://localhost:8080/static',
-    scope: 'app2',
-    module: './desktop',
-    bustRemoteEntryCache: false,
-  })
-)
+import Remote from '../remote'
+import { useState } from 'react'
 
-const App = ({ RemoteApp }) => {
-  const [state, setState] = React.useState<string>('11')
+type Props = {
+  url: string
+}
+
+const RootDev = ({ url }: Props) => {
+  const [state, setState] = useState<string>('')
 
   return (
     <div
@@ -23,10 +20,13 @@ const App = ({ RemoteApp }) => {
         border: '4px dashed #fc451e',
       }}
     >
+      <Helmet>
+        <title>SSR MF Example</title>
+      </Helmet>
       <div style={{ padding: '1rem' }}>
         <h1>Module Federation Example: Server Side Rendering</h1>
 
-        <h2>This is the App 1 application.</h2>
+        <h2>This is the App 2 application.</h2>
 
         <p>You can try to disable JavaScript and reload the page.</p>
       </div>
@@ -37,14 +37,10 @@ const App = ({ RemoteApp }) => {
       </div>
 
       <div style={{ padding: '1rem' }}>
-        {RemoteApp && <RemoteApp content={state} />}
-
-        <LoadableContent content={state} />
+        <Remote content={state} url={url} />
       </div>
-
-      <div style={{ padding: '1rem' }}></div>
     </div>
   )
 }
 
-export default App
+export default RootDev

@@ -1,6 +1,9 @@
 {
   "extends": "../tsconfig.base.json",
-  "compilerOptions": {},
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true
+  },
   "include": ["src/**/*", "**/*.d.ts"],
   "exclude": ["node_modules"]
 }
