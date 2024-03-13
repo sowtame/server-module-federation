@@ -4,7 +4,7 @@ const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const LazyComponentsPlugin = require('./plugins/lazy-components')
-const WebpackAssetsManifest = require('webpack-assets-manifest')
+const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const cssRegex = /\.css$/
@@ -69,27 +69,9 @@ module.exports = merge(shared, {
     new LazyComponentsPlugin({
       writeToDisk: true,
     }),
-    new WebpackAssetsManifest({
-      output: 'crititcal-css.json',
-      publicPath: true,
-
-      transform: (assets, manifest) => {
-        const onlyCss = Object.values(assets).filter((key) => {
-          if (key.includes('css')) {
-            return true
-          }
-        })
-
-        return onlyCss
-      },
-      // customize: (entry, _, manifest, a, b) => {
-      //   if (entry.key.includes('css')) {
-      //     debugger
-      //   }
-      //   return entry
-      // },
+    new CrtiticalCssPlugin({
+      writeToDisk: true,
     }),
-
     ...moduleFederationPlugin.client,
   ],
 })
