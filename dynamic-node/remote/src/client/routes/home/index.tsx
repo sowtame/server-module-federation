@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import c from '../../remote/styles.modules.css'
+import { siteMap } from '../../utils/sitemap'
 
 const LazyComponent = loadable(() => import('./components/modal-view'), {
   fallback: <div>loading content...</div>,
@@ -21,7 +22,10 @@ export const HomePage = ({ content }: Props) => {
         Custom text: <strong>{content}</strong>
       </p>
       <p>
-        <Link to="/second">second page</Link>
+        <Link to={siteMap.second}>second page</Link>
+      </p>
+      <p>
+        <Link to={siteMap.carousel}>carousel page</Link>
       </p>
 
       <button onClick={() => setOpen(!open)}>toggle lazy</button>

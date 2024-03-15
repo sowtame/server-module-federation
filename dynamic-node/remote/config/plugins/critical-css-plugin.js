@@ -23,8 +23,6 @@ class CrtiticalCssPlugin {
 
     stats.generator = 'critical-css-plugin'
 
-    console.log(stats.assets)
-
     const onlyCss = stats.assets
       .filter(({ name }) => {
         if (name?.includes('.css')) {
