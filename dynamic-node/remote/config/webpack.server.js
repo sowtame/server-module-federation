@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const cssRegex = /\.css$/
 const cssModuleRegex = /\.modules\.css$/
 
-module.exports = merge(shared, {
+module.exports = merge(shared(false), {
   name: 'server',
   target: false,
   entry: {

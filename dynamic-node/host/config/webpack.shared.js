@@ -1,6 +1,9 @@
 /**
  * @type {import('webpack').Configuration}
  **/
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const webpackConfig = {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -26,8 +29,23 @@ const webpackConfig = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash:8].css',
+      chunkFilename: '[name].[contenthash:8].chunk.css',
+    }),
+  ],
 }
 
 module.exports = webpackConfig

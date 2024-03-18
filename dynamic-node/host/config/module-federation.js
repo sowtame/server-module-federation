@@ -3,6 +3,12 @@ const { ModuleFederationPlugin } = require('webpack').container
 const { NodeFederationPlugin, StreamingTargetPlugin } = require('@module-federation/node')
 const FederationStatsPlugin = require('webpack-federation-stats-plugin')
 
+const shared = {
+  react: { requiredVersion: deps.react, singleton: true },
+  'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
+  'keen-slider/': { requiredVersion: deps['keen-slider'], singleton: true },
+}
+
 module.exports = {
   client: [
     new FederationStatsPlugin(),
@@ -10,10 +16,7 @@ module.exports = {
       name: 'app1',
       filename: 'remoteEntry.js',
       remotes: {},
-      shared: {
-        react: { requiredVersion: deps.react, singleton: true },
-        'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
-      },
+      shared,
     }),
   ],
   server: [
@@ -22,10 +25,7 @@ module.exports = {
       library: { type: 'commonjs-module' },
       filename: 'remoteEntry.js',
       remotes: {},
-      shared: {
-        react: { requiredVersion: deps.react, singleton: true },
-        'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
-      },
+      shared,
     }),
     new StreamingTargetPlugin({
       name: 'app1',

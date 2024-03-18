@@ -2,8 +2,6 @@ import { KeenSliderOptions, useKeenSlider } from 'keen-slider/react'
 
 import 'keen-slider/keen-slider.css'
 
-import c from './styles.modules.css'
-
 const slides = Array.from({ length: 9 }).map(() => '')
 
 const sliderOptions: KeenSliderOptions = {
@@ -16,14 +14,14 @@ const sliderOptions: KeenSliderOptions = {
   },
 }
 
-export const CarouselPage = () => {
+export const Carousel = () => {
   const [sliderRef] = useKeenSlider(sliderOptions, [])
 
   return (
-    <div ref={sliderRef} className="keen-slider">
+    <div ref={sliderRef} className="keen-slider" style={{ width: '300px', padding: '10px 0' }}>
       {slides.map((data, index) => {
         return (
-          <div key={index} className={`keen-slider__slide ${c.slide}`}>
+          <div key={index} className={`keen-slider__slide`}>
             {index}
           </div>
         )
