@@ -9,26 +9,28 @@ const styles = []
 const getConfig = (client) => {
   const clientConfig = client
     ? {
+        // insert: '#remote-id',
+        // runtime: false,
         insert: (linkTag) => {
-          // const container = document.getElementById('remote-id')
-          // console.log('🚀 ~ getConfig ~ container:', container.shadowRoot)
-          // const shadowtest = document.getElementById('shadow-test')
-          // console.log('🚀 ~ getConfig ~ shadowtest:', shadowtest)
-          // const containerInner = document.getElementById('remote-id-inner')
+          const container = document.getElementById('remote-id')
 
-          // if (!container.shadowRoot) {
-          //   const shadowContainer = container.attachShadow({ mode: 'open' })
-          //   const shadowRootElement = document.createElement('div')
+          if (container?.shadowRoot) {
+            let wrap = container?.shadowRoot.getElementById('wrap-styles')
 
-          //   // shadowContainer.appendChild(shadowRootElement)
-          //   // shadowContainer.appendChild(containerInner)
-          // }
+            if (!wrap) {
+              wrap = document.createElement('div')
 
-          // if (container.shadowRoot) {
-          //   container.shadowRoot.appendChild(linkTag)
-          //   return
-          // }
+              wrap.setAttribute('id', 'wrap-styles')
 
+              container.shadowRoot.appendChild(wrap)
+            }
+            wrap.appendChild(linkTag)
+
+            if (String(linkTag.outerHTML).includes('boot')) {
+              debugger
+            }
+            return
+          }
           document.head.appendChild(linkTag)
         },
       }
@@ -63,6 +65,7 @@ const getConfig = (client) => {
     plugins: [
       new MiniCssExtractPlugin({
         ...clientConfig,
+
         filename: '[name].[contenthash:8].css',
         chunkFilename: '[name].[contenthash:8].chunk.css',
       }),

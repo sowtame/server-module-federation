@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-helmet": "6.1.0",
     "react-router-dom": "^5.1.72",
+    "react-shadow": "^20.4.0",
     "regenerator-runtime": "0.13.11"
   },
   "devDependencies": {
