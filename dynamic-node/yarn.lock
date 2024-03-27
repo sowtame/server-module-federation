@@ -5199,6 +5199,11 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
+humps@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
+  integrity sha512-E0eIbrFWUhwfXJmsbdjRQFQPrl5pTEoKlz163j1mTqqUnU9PgR4AgB8AIITzuB3vLBdxZXyZ9TDIrwB2OASz4g==
+
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -7613,6 +7618,13 @@ react-router@5.3.4:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-shadow@^20.4.0:
+  version "20.4.0"
+  resolved "https://registry.yarnpkg.com/react-shadow/-/react-shadow-20.4.0.tgz#859f364c91fee625d882384dac4769e2ad3e66c6"
+  integrity sha512-sirvAmFja7Ss6MoyQbKWxaQ5IDTAW3Za3Tvegylfr5jXnwKZObHRIyiatefeNlskoGKfuPaZ8DNT052T0SUGcg==
+  dependencies:
+    humps "^2.0.1"
 
 react-side-effect@^2.1.0:
   version "2.1.2"

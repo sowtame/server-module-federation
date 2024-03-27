@@ -14,6 +14,5 @@ init()
 // window.addEventListener('load', init)
 
 document.addEventListener('DOMContentLoaded', () => {
-  debugger
   console.log(1)
 })
