@@ -7,7 +7,7 @@
     "start:debug": "yarn build && yarn debug",
     "serve": "node dist/server/main.js",
     "debug": "node-nightly --inspect dist/server/main.js",
-    "build": "yarn build:server && yarn build:client",
+    "build": "yarn build:server & yarn build:client",
     "build:client": "rimraf dist/client && npx webpack --mode=development --config config/webpack.client.js",
     "build:server": "rimraf dist/server && npx webpack --mode=development --config config/webpack.server.js"
   },
@@ -18,12 +18,14 @@
     "@loadable/webpack-plugin": "^5.15.2",
     "@module-federation/utilities": "^3.0.0",
     "axios": "^1.6.7",
+    "date-fns": "^3.6.0",
     "express": "4.18.2",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loadable-ssr-addon": "^1.0.2",
-    "regenerator-runtime": "0.13.11"
+    "regenerator-runtime": "0.13.11",
+    "rooks": "^7.14.1"
   },
   "devDependencies": {
     "@babel/core": "7.21.4",

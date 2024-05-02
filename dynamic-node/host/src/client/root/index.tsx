@@ -1,7 +1,17 @@
 import { useState } from 'react'
+import loadable from '@loadable/component'
+import { format } from 'date-fns'
+
+const LazyLoadable = loadable(() => import('../components/lazy'))
+
+import { useDidMount } from 'rooks'
 
 const App = ({ RemoteApp, url }) => {
   const [state, setState] = useState<string>('11')
+
+  useDidMount(() => {
+    console.log('useDidMount root')
+  })
 
   return (
     <div
@@ -27,6 +37,8 @@ const App = ({ RemoteApp, url }) => {
       <div style={{ padding: '1rem' }}>{RemoteApp && <RemoteApp content={state} url={url} />}</div>
 
       <div style={{ padding: '1rem' }}></div>
+
+      <LazyLoadable />
     </div>
   )
 }

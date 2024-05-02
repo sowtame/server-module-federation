@@ -11,17 +11,21 @@ const initSharing = async () => {
 }
 
 export const loadWmfComponent = async (scope: string, module: string) => {
-  // Эта строчка инициализирует область общего доступа.
-  await initSharing()
-  const container = window[scope]
+  try {
+    // Эта строчка инициализирует область общего доступа.
+    await initSharing()
+    const container = window[scope]
 
-  console.log(__webpack_share_scopes__.default)
+    console.log(__webpack_share_scopes__.default)
 
-  // Initialize the container to get shared modules and get the module factory:
-  const [, factory] = await Promise.all([container.init(__webpack_share_scopes__.default), container.get(module)])
+    // Initialize the container to get shared modules and get the module factory:
+    const [, factory] = await Promise.all([container.init(__webpack_share_scopes__.default), container.get(module)])
 
-  // Загружаем нужные чанки.
-  const Module = factory()
+    // Загружаем нужные чанки.
+    const Module = factory()
 
-  return Module
+    return Module
+  } catch (error) {
+    console.log('🚀 ~ loadWmfComponent ~ error:', error.message)
+  }
 }

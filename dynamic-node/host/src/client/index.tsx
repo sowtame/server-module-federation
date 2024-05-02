@@ -1,1 +1,1 @@
-import('./bootstrap')
+import(/* webpackChunkName: "desktop_bootstrap" */ './bootstrap')
