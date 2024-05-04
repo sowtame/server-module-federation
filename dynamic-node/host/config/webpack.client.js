@@ -18,7 +18,7 @@ const webpackConfig = {
     path: path.resolve(__dirname, '../dist/client'),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: 'http://localhost:8081/static/',
+    publicPath: '/static/',
   },
   plugins: [
     new LoadablePlugin({

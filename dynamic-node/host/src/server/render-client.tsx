@@ -1,6 +1,7 @@
 import App from '../client/root'
 import { renderToString } from 'react-dom/server'
 import axios from 'axios'
+import fs from 'fs'
 import { loadServerRemote } from './utils/load-server-remote'
 
 export default async function serverRender(req, res, next) {
@@ -9,11 +10,13 @@ export default async function serverRender(req, res, next) {
     url: 'http://localhost:8080/server/remoteEntry.js',
   })
 
-  let cssLinks = []
+  const initialAssetsString = fs.readFileSync(`${process.cwd()}/dist/client/initial-assets.json`, 'utf-8')
 
+  const initialAssets = JSON.parse(initialAssetsString)
+
+  let cssLinks = []
   try {
     const { data } = await axios.get<string[]>('http://localhost:8080/static/crititcal-css.json')
-
     cssLinks = data
   } catch (error) {}
 
@@ -38,7 +41,11 @@ export default async function serverRender(req, res, next) {
   res.write(`<body>`)
   res.write(`<div id="root">${markup}</div>`)
 
-  res.write('<script async data-chunk="main" src="http://localhost:8081/static/index.js"></script>')
+  {
+    initialAssets.map(({ src }) => {
+      res.write(`<script async src=${src}></script>`)
+    })
+  }
   res.write('<script async src="http://localhost:8080/static/remoteEntry.js"></script>')
   res.write('</body></html>')
   res.send()

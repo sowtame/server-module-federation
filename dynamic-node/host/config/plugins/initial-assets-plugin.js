@@ -26,13 +26,33 @@ class InitialAssetsPlugin {
       publicPath: true,
     })
 
-    console.log(stats)
-
     stats.generator = 'initial-assets-plugin'
 
-    const onlyCss = stats
+    const entry = 'index'
 
-    const result = JSON.stringify(onlyCss, null, 2)
+    const otherLazyChunks = Object.keys(stats.namedChunkGroups).reduce((acc, key) => {
+      const item = stats.namedChunkGroups[key]
+
+      if (key !== entry) {
+        acc = [...acc, ...item.chunks]
+      }
+
+      return acc
+    }, [])
+
+    const initialChunks = stats.chunks.reduce((acc, chunk) => {
+      if (chunk.runtime.includes(entry) && !otherLazyChunks.includes(chunk.id)) {
+        chunk.files.forEach((file) => {
+          acc.push({
+            src: `${stats.publicPath}${file}`,
+          })
+        })
+      }
+
+      return acc
+    }, [])
+
+    const result = JSON.stringify(initialChunks, null, 2)
 
     if (this.opts.writeToDisk) {
       this.writeAssetsFile(result)
