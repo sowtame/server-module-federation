@@ -8,7 +8,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const cssRegex = /\.css$/
 const cssModuleRegex = /\.modules\.css$/
 
-module.exports = merge(shared, {
+/**
+ * @type {import('webpack').Configuration}
+ **/
+const webpackConfig = {
   name: 'server',
   target: false,
   entry: {
@@ -61,4 +64,6 @@ module.exports = merge(shared, {
   stats: {
     colors: true,
   },
-})
+}
+
+module.exports = merge(shared, webpackConfig)

@@ -13,6 +13,7 @@ const webpackConfig = {
   target: 'web',
   entry: {
     index: ['@babel/polyfill', path.resolve(__dirname, '../src/client/index')],
+    bootstrapIndex: ['@babel/polyfill', path.resolve(__dirname, '../src/client/bootstrap')],
   },
   output: {
     path: path.resolve(__dirname, '../dist/client'),
@@ -26,7 +27,7 @@ const webpackConfig = {
     }),
 
     new InitialAssetsPlugin(),
-
+    new HtmlWebpackPlugin(),
     ...moduleFederationPlugin.client,
   ],
 }

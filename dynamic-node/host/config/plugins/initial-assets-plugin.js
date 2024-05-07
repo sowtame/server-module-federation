@@ -55,7 +55,11 @@ class InitialAssetsPlugin {
     const result = JSON.stringify(initialChunks, null, 2)
 
     if (this.opts.writeToDisk) {
-      this.writeAssetsFile(result)
+      this.writeAssetsFile(result, 'initial-assets.json')
+    }
+    if (this.opts.writeToDisk) {
+      const result = JSON.stringify({ initialChunks, stats }, null, 2)
+      this.writeAssetsFile(result, 'initial-assets-all.json')
     }
 
     if (this.opts.outputAsset) {
@@ -76,10 +80,10 @@ class InitialAssetsPlugin {
    * Write Assets Manifest file
    * @method writeAssetsFile
    */
-  writeAssetsFile = (manifest) => {
+  writeAssetsFile = (manifest, fileName) => {
     const outputFolder = this.opts.writeToDisk.filename || this.compiler.options.output.path
 
-    const outputFile = nodePath.resolve(outputFolder, this.opts.filename)
+    const outputFile = nodePath.resolve(outputFolder, fileName)
 
     try {
       if (!fs.existsSync(outputFolder)) {
