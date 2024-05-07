@@ -27,7 +27,6 @@ const webpackConfig = {
     }),
 
     new InitialAssetsPlugin(),
-    new HtmlWebpackPlugin(),
     ...moduleFederationPlugin.client,
   ],
 }
