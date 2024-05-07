@@ -19,6 +19,7 @@
     "@loadable/webpack-plugin": "^5.15.2",
     "@module-federation/utilities": "^3.0.0",
     "axios": "^1.6.7",
+    "chunks-webpack-plugin": "^11.0.0",
     "date-fns": "^3.6.0",
     "express": "4.18.2",
     "mini-css-extract-plugin": "^2.9.0",

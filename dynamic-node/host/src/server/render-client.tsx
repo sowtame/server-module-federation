@@ -14,7 +14,7 @@ export default async function serverRender(req, res, next) {
 
   const initialAssets = JSON.parse(initialAssetsString)
 
-  let cssLinks = []
+  let cssLinks = initialAssets.css
   try {
     const { data } = await axios.get<string[]>('http://localhost:8080/static/crititcal-css.json')
     cssLinks = data
@@ -33,16 +33,26 @@ export default async function serverRender(req, res, next) {
 
   res.write(`<head>`)
   {
-    cssLinks.map((href) => {
-      res.write(`<link rel="stylesheet" href="${href}"/>`)
+    cssLinks.map(({ src }) => {
+      res.write(`<link rel="stylesheet" href="${src}"/>`)
     })
   }
   res.write(`</head>`)
   res.write(`<body>`)
   res.write(`<div id="root">${markup}</div>`)
 
+  // {
+  //   initialAssets.js.map(({ src }) => {
+  //     res.write(`<script async src=${src}></script>`)
+  //   })
+  // }
+
   {
-    initialAssets.map(({ src }) => {
+    ;[
+      {
+        src: '/static/index.js',
+      },
+    ].map(({ src }) => {
       res.write(`<script async src=${src}></script>`)
     })
   }

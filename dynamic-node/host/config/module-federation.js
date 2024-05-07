@@ -14,6 +14,7 @@ module.exports = {
         react: { requiredVersion: deps.react, singleton: true },
         'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
         rooks: { requiredVersion: deps['rooks'] },
+        '@alfalab/core-components/': { requiredVersion: deps['@alfalab/core-components'] },
       },
     }),
   ],

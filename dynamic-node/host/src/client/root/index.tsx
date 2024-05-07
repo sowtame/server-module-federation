@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import loadable from '@loadable/component'
-import { format } from 'date-fns'
-import { Button } from '@alfalab/core-components/button'
+import { Typography } from '@alfalab/core-components/typography'
 
 const LazyLoadable = loadable(() => import('../components/lazy'))
 
@@ -23,7 +22,7 @@ const App = ({ RemoteApp, url }) => {
       }}
     >
       <div style={{ padding: '1rem' }}>
-        <h1>Module Federation Example: Server Side Rendering</h1>
+        <Typography.Title tag="h1">Module Federation Example: Server Side Rendering</Typography.Title>
 
         <h2>This is the App 1 application.</h2>
 
@@ -37,9 +36,7 @@ const App = ({ RemoteApp, url }) => {
 
       <div style={{ padding: '1rem' }}>{RemoteApp && <RemoteApp content={state} url={url} />}</div>
 
-      <div style={{ padding: '1rem' }}></div>
-
-      <Button>Hello world</Button>
+      <Typography.Text>Hello world</Typography.Text>
 
       <LazyLoadable />
     </div>
