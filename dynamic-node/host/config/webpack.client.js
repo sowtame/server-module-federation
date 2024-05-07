@@ -4,6 +4,10 @@ const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const InitialAssetsPlugin = require('./plugins/initial-assets-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.modules\.css$/
 
 /**
  * @type {import('webpack').Configuration}
@@ -29,6 +33,28 @@ const webpackConfig = {
     new InitialAssetsPlugin(),
     ...moduleFederationPlugin.client,
   ],
+  module: {
+    rules: [
+      {
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                config: path.resolve(__dirname, './postcss.config.js'),
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 }
 
 module.exports = merge(shared, webpackConfig)

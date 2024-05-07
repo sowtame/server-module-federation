@@ -5,6 +5,9 @@ const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const webpack = require('webpack')
 
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.modules\.css$/
+
 /**
  * @type {import('webpack').Configuration}
  **/
@@ -33,6 +36,15 @@ const webpackConfig = {
   ],
   stats: {
     colors: true,
+  },
+  module: {
+    rules: [
+      {
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        loader: require.resolve('null-loader'),
+      },
+    ],
   },
 }
 
