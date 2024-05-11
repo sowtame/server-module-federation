@@ -16,8 +16,9 @@ const webpackConfig = {
   name: 'client',
   target: 'web',
   entry: {
-    index: ['@babel/polyfill', path.resolve(__dirname, '../src/client/index')],
-    bootstrapIndex: ['@babel/polyfill', path.resolve(__dirname, '../src/client/bootstrap')],
+    index: [path.resolve(__dirname, '../src/client/index')],
+    // index: ['@babel/polyfill', path.resolve(__dirname, '../src/client/index')],
+    // bootstrapIndex: ['@babel/polyfill', path.resolve(__dirname, '../src/client/bootstrap')],
   },
   output: {
     path: path.resolve(__dirname, '../dist/client'),
@@ -29,7 +30,6 @@ const webpackConfig = {
     new LoadablePlugin({
       writeToDisk: true,
     }),
-
     new InitialAssetsPlugin(),
     ...moduleFederationPlugin.client,
   ],
