@@ -16,7 +16,7 @@ app.all('/favicon.ico', async (req, res, next) => {
   res.statusCode = 200
   res.send()
 })
-app.all('*', async (req, res, next) => (await import('./render-client')).default(req, res, next))
+app.all('*', async (req, res, next) => (await import('./render-client')).serverRender(req, res, next))
 
 app.listen(PORT, () => {
   console.info(`[${new Date().toISOString()}]`, `App1 is running: 🌎 http://localhost:${PORT}`)

@@ -29,7 +29,9 @@ class CrtiticalCssPlugin {
           return true
         }
       })
-      .map(({ name }) => `${stats.publicPath}${name}`)
+      .map(({ name }) => ({
+        src: `${stats.publicPath}${name}`,
+      }))
 
     const result = JSON.stringify(onlyCss, null, 2)
 

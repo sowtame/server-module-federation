@@ -43,6 +43,7 @@
     "@types/loadable__server": "5.12.6",
     "@types/react": "18.2.62",
     "@types/react-dom": "18.2.19",
+    "assets-retry": "^0.3.5",
     "babel-loader": "9.1.2",
     "css-loader": "^7.1.1",
     "mini-css-extract-plugin": "^2.9.0",

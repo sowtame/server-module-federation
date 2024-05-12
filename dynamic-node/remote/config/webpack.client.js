@@ -6,6 +6,10 @@ const moduleFederationPlugin = require('./module-federation')
 const LazyComponentsPlugin = require('./plugins/lazy-components')
 const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.modules\.css$/
+
 /**
  * @type {import('webpack').Configuration}
  **/

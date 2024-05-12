@@ -1,14 +1,17 @@
-import App from '../client/root'
 import { renderToString } from 'react-dom/server'
 import axios from 'axios'
 import fs from 'fs'
 import { loadServerRemote } from './utils/load-server-remote'
+import { Html } from './html'
 
-export default async function serverRender(req, res, next) {
+export async function serverRender(req, res, next) {
   const container = await loadServerRemote({
     global: 'app2',
     url: 'http://localhost:8080/server/remoteEntry.js',
   })
+  const factory = await container.get('./desktop')
+
+  const RemoteModule = factory()
 
   const initialAssetsString = fs.readFileSync(`${process.cwd()}/dist/client/initial-assets.json`, 'utf-8')
 
@@ -17,47 +20,14 @@ export default async function serverRender(req, res, next) {
   let cssLinks = initialAssets.css
   try {
     const { data } = await axios.get<string[]>('http://localhost:8080/static/crititcal-css.json')
-    cssLinks = data
+    cssLinks = [...cssLinks, ...data]
   } catch (error) {}
 
-  const factory = await container.get('./desktop')
-
-  const RemoteModule = factory()
-
-  const markup = renderToString(<App url={req.url} RemoteApp={RemoteModule.default} />)
+  const markup = renderToString(<Html url={req.url} RemoteModule={RemoteModule.default} cssLinks={cssLinks} jsLinks={initialAssets.js} />)
 
   res.statusCode = 200
   res.setHeader('Content-type', 'text/html')
-  res.write('<!DOCTYPE html>')
-  res.write('<html>')
-
-  res.write(`<head>`)
-  {
-    cssLinks.map(({ src }) => {
-      res.write(`<link rel="stylesheet" href="${src}"/>`)
-    })
-  }
-  res.write(`</head>`)
-  res.write(`<body>`)
-  res.write(`<div id="root">${markup}</div>`)
-
-  // {
-  //   initialAssets.js.map(({ src }) => {
-  //     res.write(`<script async src=${src}></script>`)
-  //   })
-  // }
-
-  {
-    ;[
-      {
-        src: '/static/index.js',
-      },
-    ].map(({ src }) => {
-      res.write(`<script async src=${src}></script>`)
-    })
-  }
-  res.write('<script async src="http://localhost:8080/static/remoteEntry.js"></script>')
-  res.write('</body></html>')
+  res.write(`<!DOCTYPE html>${markup}`)
   res.send()
 
   next()
