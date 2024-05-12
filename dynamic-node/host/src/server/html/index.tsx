@@ -26,11 +26,11 @@ export const Html = ({ url, cssLinks, jsLinks, RemoteModule }: Props) => {
           <App url={url} RemoteApp={RemoteModule} />
         </div>
       </body>
-      {jsLinks.map(({ src }) => {
+      {/* {jsLinks.map(({ src }) => {
         return <script defer src={src} />
-      })}
+      })} */}
 
-      {/* <script async src="/static/index.js" /> */}
+      <script async src="/static/index.js" />
       <script defer dangerouslySetInnerHTML={{ __html: `${fs.readFileSync(pathRetry, 'utf-8')} ${initAssetsRetry}` }} />
       <script async src="http://localhost:8080/static/remoteEntry.js" />
     </html>

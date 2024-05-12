@@ -4,10 +4,12 @@ import { Typography } from '@alfalab/core-components/typography'
 
 const LazyLoadable = loadable(() => import('../components/lazy'))
 
-import { useDidMount } from 'rooks'
+import { useDidMount, useToggle } from 'rooks'
 
 const App = ({ RemoteApp, url }) => {
   const [state, setState] = useState<string>('11')
+
+  const [open, toggle] = useToggle(true)
 
   useDidMount(() => {
     console.log('useDidMount root')
@@ -37,8 +39,9 @@ const App = ({ RemoteApp, url }) => {
       <div style={{ padding: '1rem' }}>{RemoteApp && <RemoteApp content={state} url={url} />}</div>
 
       <Typography.Text>Hello world</Typography.Text>
+      <Typography.Text onClick={() => toggle()}>Hello world</Typography.Text>
 
-      <LazyLoadable />
+      {open && <LazyLoadable />}
     </div>
   )
 }

@@ -11,6 +11,7 @@ const TestLazy = ({}: Props) => {
   useDidUpdate(() => {
     console.log('useDidUpdate')
   }, [])
+
   return (
     <div>
       <div>LazyLoadable: {format(new Date(), 'MM/dd/yyyy')}</div>

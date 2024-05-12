@@ -13,7 +13,11 @@ module.exports = {
         './desktop': './src/client/remote',
       },
       remotes: {},
-      shared: [{ react: deps.react, 'react-dom': deps['react-dom'] }],
+      shared: {
+        react: { requiredVersion: deps.react, singleton: true },
+        'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
+        // '@alfalab/core-components/': { requiredVersion: deps['@alfalab/core-components'] },
+      },
     }),
   ],
   server: [
@@ -24,9 +28,12 @@ module.exports = {
       exposes: {
         './desktop': './src/client/remote',
       },
-      remotes: {},
       shared: [
-        { react: { requiredVersion: deps.react, singleton: true }, 'react-dom': { requiredVersion: deps['react-dom'], singleton: true } },
+        {
+          react: { requiredVersion: deps.react, singleton: true },
+          'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
+          // '@alfalab/core-components/': { requiredVersion: deps['@alfalab/core-components'] },
+        },
       ],
     }),
     new StreamingTargetPlugin({
