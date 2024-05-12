@@ -9,7 +9,7 @@ type Props = {
   jsLinks?: any
 }
 
-const initAssetsRetry = `window.assetsRetryStatistics = window.assetsRetry({ domain: ['http://localhost:8081', 'http://localhost:8082'], maxRetryCount: 1 })`
+const initAssetsRetry = `window.assetsRetryStatistics = window.assetsRetry({ domain: {'http://localhost:8081': 'http://localhost:8082'}, maxRetryCount: 1 })`
 
 const pathRetry = require.resolve('assets-retry')
 
@@ -20,19 +20,18 @@ export const Html = ({ url, cssLinks, jsLinks, RemoteModule }: Props) => {
         {cssLinks.map(({ src }) => {
           return <link key={src} rel="stylesheet" href={src} />
         })}
-        <script defer dangerouslySetInnerHTML={{ __html: fs.readFileSync(pathRetry, 'utf-8') }} />
       </head>
       <body>
         <div id="root">
           <App url={url} RemoteApp={RemoteModule} />
         </div>
       </body>
-      {/* {jsLinks.map(({ src }) => {
-        return <script async src={src} />
-      })} */}
+      {jsLinks.map(({ src }) => {
+        return <script defer src={src} />
+      })}
 
-      <script async dangerouslySetInnerHTML={{ __html: initAssetsRetry }} />
-      <script async src="/static/index.js" />
+      {/* <script async src="/static/index.js" /> */}
+      <script defer dangerouslySetInnerHTML={{ __html: `${fs.readFileSync(pathRetry, 'utf-8')} ${initAssetsRetry}` }} />
       <script async src="http://localhost:8080/static/remoteEntry.js" />
     </html>
   )
