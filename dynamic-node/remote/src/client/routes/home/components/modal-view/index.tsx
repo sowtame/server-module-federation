@@ -1,4 +1,4 @@
-import c from './styles.modules.css'
+import c from './styles.module.css'
 
 import loadable from '@loadable/component'
 

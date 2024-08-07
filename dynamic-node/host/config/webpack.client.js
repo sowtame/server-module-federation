@@ -4,10 +4,11 @@ const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const InitialAssetsPlugin = require('./plugins/initial-assets-plugin')
+const CoreComponentsPathAliasPlugin = require('./plugins/core-components-path-alias-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const cssRegex = /\.css$/
-const cssModuleRegex = /\.modules\.css$/
+const cssModuleRegex = /\.module\.css$/
 
 /**
  * @type {import('webpack').Configuration}
@@ -31,6 +32,7 @@ const webpackConfig = {
       writeToDisk: true,
     }),
     new InitialAssetsPlugin(),
+    // new CoreComponentsPathAliasPlugin({ folder: 'moderncssm' }),
     ...moduleFederationPlugin.client,
   ],
   module: {

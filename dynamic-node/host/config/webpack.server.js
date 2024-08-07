@@ -6,7 +6,7 @@ const moduleFederationPlugin = require('./module-federation')
 const webpack = require('webpack')
 
 const cssRegex = /\.css$/
-const cssModuleRegex = /\.modules\.css$/
+const cssModuleRegex = /\.module\.css$/
 
 /**
  * @type {import('webpack').Configuration}
@@ -15,7 +15,7 @@ const webpackConfig = {
   name: 'server',
   target: false,
   entry: {
-    main: ['webpack/hot/poll?1000', '@babel/polyfill', path.resolve(__dirname, '../src/server/index')],
+    main: ['@babel/polyfill', path.resolve(__dirname, '../src/server/index')],
   },
   externals: {
     express: 'express',

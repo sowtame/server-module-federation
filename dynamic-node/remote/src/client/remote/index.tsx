@@ -1,4 +1,4 @@
-import c from './styles.modules.css'
+import c from './styles.module.css'
 
 import { Switch, Route, Link } from 'react-router-dom'
 import { AppMounter } from '../components/mounter'

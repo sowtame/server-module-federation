@@ -2,7 +2,8 @@ import loadable from '@loadable/component'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import c from '../../remote/styles.modules.css'
+import c from '../../remote/styles.module.css'
+console.log('🚀 ~ c:', c)
 import { siteMap } from '../../utils/sitemap'
 
 const LazyComponent = loadable(() => import('./components/modal-view'), {

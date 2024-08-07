@@ -6,7 +6,7 @@ const moduleFederationPlugin = require('./module-federation')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const cssRegex = /\.css$/
-const cssModuleRegex = /\.modules\.css$/
+const cssModuleRegex = /\.module\.css$/
 
 /**
  * @type {import('webpack').Configuration}

@@ -8,7 +8,7 @@ const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const cssRegex = /\.css$/
-const cssModuleRegex = /\.modules\.css$/
+const cssModuleRegex = /\.module\.css$/
 
 /**
  * @type {import('webpack').Configuration}
@@ -17,7 +17,7 @@ const webpackConfig = {
   name: 'client',
   target: 'web',
   entry: {
-    index: ['@babel/polyfill', path.resolve(__dirname, '../src/client/index')],
+    index: [path.resolve(__dirname, '../src/client/index')],
   },
   output: {
     path: path.resolve(__dirname, '../dist/client'),

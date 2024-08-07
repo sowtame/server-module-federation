@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
 const cssRegex = /\.css$/
-const cssModuleRegex = /\.modules\.css$/
+const cssModuleRegex = /\.module\.css$/
 
 /**
  * @type {import('webpack').Configuration}
@@ -39,7 +39,10 @@ const webpackConfig = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                // exportOnlyLocals: true,
+                localIdentName: '[folder]__[local]--[hash:base64:6]-t',
+              },
             },
           },
           {
