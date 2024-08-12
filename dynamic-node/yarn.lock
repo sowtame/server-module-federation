@@ -56,57 +56,7 @@
     tslib "^2.4.0"
     ui-primitives "^20.8.0"
 
-"@alfalab/core-components@^45.2.0":
-  version "45.2.0"
-  resolved "https://registry.yarnpkg.com/@alfalab/core-components/-/core-components-45.2.0.tgz#f1363112ef359ab0e434d53f4dc12691b6a6f5f7"
-  integrity sha512-lRi+WtgEta99kHHcgslDAnw6zSLBk13MG5Jyz9eyy1kN1njjRJ615sAN0lJA95u94alqgEV2hRu6RArLIyz/Uw==
-  dependencies:
-    "@alfalab/data" "^1.7.0"
-    "@alfalab/hooks" "^1.13.0"
-    "@alfalab/icons-glyph" "^2.139.0"
-    "@alfalab/icons-logotype" "^2.27.0"
-    "@alfalab/utils" "^1.15.1"
-    "@dnd-kit/core" "^6.0.7"
-    "@dnd-kit/sortable" "^7.0.2"
-    "@juggle/resize-observer" "^3.3.1"
-    "@maskito/core" "^1.7.0"
-    "@maskito/react" "^1.7.0"
-    "@popperjs/core" "^2.11.8"
-    "@types/react-transition-group" "^4.4.5"
-    can-use-dom "^0.1.0"
-    classnames "^2.3.1"
-    compute-scroll-into-view "^3.1.0"
-    date-fns "^2.16.1"
-    downshift "^8.3.1"
-    element-closest "^3.0.2"
-    intersection-observer "^0.12.0"
-    libphonenumber-js "^1.10.30"
-    lodash.debounce "^4.0.8"
-    lodash.memoize "^4.1.2"
-    lodash.throttle "^4.1.1"
-    mdast-util-gfm-strikethrough "^0.2.3"
-    micromark-extension-gfm-strikethrough "^0.6.5"
-    nouislider "^15.6.0"
-    popper-max-size-modifier "^0.2.0"
-    react-canvas-pattern-lock "^1.1.1"
-    react-div-100vh "^0.7.0"
-    react-focus-lock "^2.9.3"
-    react-markdown "6.0.2"
-    react-merge-refs "^1.1.0"
-    react-popper "^2.3.0"
-    react-swipeable "^7.0.0"
-    react-textarea-autosize "^8.3.4"
-    react-transition-group "^4.4.5"
-    react-virtual "^2.3.2"
-    react-virtuoso "^2.12.0"
-    recharts "^2.1.2"
-    simplebar "^5.3.8"
-    swiper "^6.8.2"
-    text-mask-core "^5.1.2"
-    tslib "^2.4.0"
-    ui-primitives "^13.19.0"
-
-"@alfalab/data@^1.7.0", "@alfalab/data@^1.8.0":
+"@alfalab/data@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@alfalab/data/-/data-1.8.0.tgz#2f991e196946336541de5a7d64eabf7caf02b58c"
   integrity sha512-hyYAw8tbx099ibX9r9T3YiOkxI+s7p/Hi7WOQC6cF+Uy5KX/0usghFyt/gUjj+7acf6G+zx1VwAtcI9tSUle9w==
@@ -142,7 +92,7 @@
   resolved "https://registry.yarnpkg.com/@alfalab/stack-context/-/stack-context-1.16.0.tgz#7f33b497f3903dcafeba563f2cf96adb6a9c345b"
   integrity sha512-8XiqNU7WaHKK6HvlBr0TNj3WYoe8neC5s7FWCQkYjv8ybeQZ8q68EQvICW3GnfVNG3L/rhFbm6QtV2UObYfYzw==
 
-"@alfalab/utils@^1.13.2", "@alfalab/utils@^1.15.1", "@alfalab/utils@^1.15.2":
+"@alfalab/utils@^1.13.2", "@alfalab/utils@^1.15.2":
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/@alfalab/utils/-/utils-1.15.2.tgz#309d0c9add52a59244f9d74eb720c2ad5fe14209"
   integrity sha512-FD6eH06OHwNB4wr6A81aIAnJjXosXalTnfUiRMA6VALSQBCsvcvxH8BmLUxsLb5Hb84rJS01Q+zk3onT2JBjYA==
@@ -4449,7 +4399,7 @@ dot-prop@^5.1.0:
   dependencies:
     is-obj "^2.0.0"
 
-downshift@8.4.0, downshift@^8.3.1:
+downshift@8.4.0:
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/downshift/-/downshift-8.4.0.tgz#850697de3e691673a1084de3b66034e32d8a940f"
   integrity sha512-feeqAR0s53NTIKaHxyFhdLo9UCHUwge4q/j+heIz7X8AaURgdcANOnMGLWffWQCoX9l4Vpw87nOrlX6uJceqjA==
@@ -5014,13 +4964,6 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
-
-focus-lock@^1.3.2:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/focus-lock/-/focus-lock-1.3.4.tgz#a143aa327224df2e83414f87e8a3328cb5a62156"
-  integrity sha512-Gv0N3mvej3pD+HWkNryrF8sExzEHqhQ6OSFxD4DPxm9n5HGCaHme98ZMBZroNEAJcsdtHxk+skvThGKyUeoEGA==
-  dependencies:
-    tslib "^2.0.3"
 
 focus-lock@^1.3.5:
   version "1.3.5"
@@ -7973,14 +7916,6 @@ raw-body@2.5.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-canvas-pattern-lock@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-canvas-pattern-lock/-/react-canvas-pattern-lock-1.2.0.tgz#aa4ef18597c2d49e0c760248c7e4f10ee91ac75d"
-  integrity sha512-fK8dWtm7vddD9XXALQxSc7tGIfnBcnCRu5ptDwbqSB/ioVRkA3mxDj7uk+lv45wn/EnJTdakpcZSUbVh1TvHAQ==
-  dependencies:
-    react-merge-refs "^1.1.0"
-    react-use-event-hook "^0.9.6"
-
 react-canvas-pattern-lock@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-canvas-pattern-lock/-/react-canvas-pattern-lock-2.0.6.tgz#db808af2947e3cec50ad9ae83340bd02a9835248"
@@ -8024,18 +7959,6 @@ react-focus-lock@^2.12.1:
     prop-types "^15.6.2"
     react-clientside-effect "^1.2.6"
     use-callback-ref "^1.3.2"
-    use-sidecar "^1.1.2"
-
-react-focus-lock@^2.9.3:
-  version "2.11.2"
-  resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-2.11.2.tgz#dcc9a0dde630f0b9c694b823066f1b954c024422"
-  integrity sha512-DDTbEiov0+RthESPVSTIdAWPPKic+op3sCcP+icbMRobvQNt7LuAlJ3KoarqQv5sCgKArru3kXmlmFTa27/CdQ==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    focus-lock "^1.3.2"
-    prop-types "^15.6.2"
-    react-clientside-effect "^1.2.6"
-    use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
 react-helmet@6.1.0:
@@ -9617,11 +9540,6 @@ uglify-js@^3.1.4:
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.17.4.tgz#61678cf5fa3f5b7eb789bb345df29afb8257c22c"
   integrity sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==
 
-ui-primitives@^13.19.0:
-  version "13.30.0"
-  resolved "https://registry.yarnpkg.com/ui-primitives/-/ui-primitives-13.30.0.tgz#460a0184e9e9aba9eb5d794ae7297e93fb664e59"
-  integrity sha512-kFep0HQ+NXMxHNSKLUUmAfRA6rrhD0WNrqyCt08Cs/8zjuklM/ut6GBL1Oej88TFuVkOa0VQJVRik8Bimyu/Sg==
-
 ui-primitives@^20.8.0:
   version "20.18.0"
   resolved "https://registry.yarnpkg.com/ui-primitives/-/ui-primitives-20.18.0.tgz#2e16fc6309a5ed7dd8f11f3c2a9680fa3988c7ed"
@@ -9809,13 +9727,6 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg==
-
-use-callback-ref@^1.3.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.3.1.tgz#9be64c3902cbd72b07fe55e56408ae3a26036fd0"
-  integrity sha512-Lg4Vx1XZQauB42Hw3kK7JM6yjVjgFmFC5/Ab797s79aARomD2nEErc4mCgM8EZrARLmmbWpi5DGCadmK50DcAQ==
-  dependencies:
-    tslib "^2.0.0"
 
 use-callback-ref@^1.3.2:
   version "1.3.2"

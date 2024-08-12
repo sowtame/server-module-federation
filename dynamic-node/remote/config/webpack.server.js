@@ -4,6 +4,8 @@ const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CoreComponentsPathAliasPlugin = require('./plugins/core-components-path-alias-plugin')
+const getCSSModuleLocalIdent = require('./utils/get-css-module-local-ident')
 
 const cssRegex = /\.css$/
 const cssModuleRegex = /\.module\.css$/
@@ -39,7 +41,11 @@ const webpackConfig = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                getLocalIdent: (context, _, localName) => {
+                  return getCSSModuleLocalIdent(context, localName, 'cssm')
+                },
+              },
             },
           },
           {
@@ -55,6 +61,7 @@ const webpackConfig = {
     ],
   },
   plugins: [
+    new CoreComponentsPathAliasPlugin({ folder: 'cssm' }),
     new LoadablePlugin({
       writeToDisk: true,
     }),

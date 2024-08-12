@@ -6,6 +6,8 @@ const moduleFederationPlugin = require('./module-federation')
 const LazyComponentsPlugin = require('./plugins/lazy-components')
 const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CoreComponentsPathAliasPlugin = require('./plugins/core-components-path-alias-plugin')
+const getCSSModuleLocalIdent = require('./utils/get-css-module-local-ident')
 
 const cssRegex = /\.css$/
 const cssModuleRegex = /\.module\.css$/
@@ -52,7 +54,11 @@ const webpackConfig = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                getLocalIdent: (context, _, localName) => {
+                  return getCSSModuleLocalIdent(context, localName, 'moderncssm')
+                },
+              },
             },
           },
           {
@@ -68,6 +74,7 @@ const webpackConfig = {
     ],
   },
   plugins: [
+    new CoreComponentsPathAliasPlugin({ folder: 'moderncssm' }),
     new LoadablePlugin(),
     new LazyComponentsPlugin({
       writeToDisk: true,
