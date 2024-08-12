@@ -1,22 +1,18 @@
 const { createHash } = require('crypto')
 
-function getCSSModuleLocalIdent(context, localName, lib) {
+function getCSSModuleLocalIdent(context, localName) {
   let resourcePath = context.resourcePath
 
   const containsAlfLib = /@alfalab|@alfa-bank/g.test(context.resourcePath)
 
-  console.log('context.resourcePath', context.resourcePath)
-
   if (containsAlfLib) {
-    // const containsAlfLibWithCsmm = /moderncssm|csmm|esm/.test(context.resourcePath)
-    resourcePath = String(context.resourcePath).replace(/moderncssm|csmm|esm/g, '')
-
-    // if (containsAlfLibWithCsmm) {
-    // }
+    resourcePath = String(context.resourcePath).replace(/moderncssm\/|cssm\/|esm\//, '')
   }
 
-  const folder = context.resourcePath.split('/')
-  const folderName = folder[folder.length - 2].replace(lib, 'core-components')
+  const resourceArray = context.resourcePath.split('/')
+
+  // Бывают кейсы, когда стили из рут папки и папка у такого является moderncssm|cssm|esm подменяем такие кейсы
+  const folderName = resourceArray[resourceArray.length - 2].replace(/moderncssm|cssm|esm/, 'alfa-components')
 
   const hash = createHash('md5')
   hash.update(Buffer.from(resourcePath + localName, 'utf8'))

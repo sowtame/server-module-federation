@@ -43,7 +43,7 @@ const webpackConfig = {
             options: {
               modules: {
                 getLocalIdent: (context, _, localName) => {
-                  return getCSSModuleLocalIdent(context, localName, 'cssm')
+                  return getCSSModuleLocalIdent(context, localName)
                 },
               },
             },

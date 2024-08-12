@@ -56,7 +56,7 @@ const webpackConfig = {
             options: {
               modules: {
                 getLocalIdent: (context, _, localName) => {
-                  return getCSSModuleLocalIdent(context, localName, 'moderncssm')
+                  return getCSSModuleLocalIdent(context, localName)
                 },
               },
             },
