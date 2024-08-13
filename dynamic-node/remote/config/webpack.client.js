@@ -1,6 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-const LoadablePlugin = require('@loadable/webpack-plugin')
+// const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const LazyComponentsPlugin = require('./plugins/lazy-components')
@@ -23,6 +23,7 @@ const webpackConfig = {
   entry: {
     index: [path.resolve(__dirname, '../src/client/index')],
   },
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist/client'),
     filename: '[name].js',
@@ -33,11 +34,11 @@ const webpackConfig = {
     minimize: true,
     minimizer: [
       new CssMinimizerPlugin({
-        // minify: CssMinimizerPlugin.lightningCssMinify,
-        // minimizerOptions: {
-        //   // cssModules: true,
-        //   // targets: ['>= 0.25%'],
-        // },
+        minify: CssMinimizerPlugin.lightningCssMinify,
+        minimizerOptions: {
+          // cssModules: true,
+          // targets: ['>= 0.25%'],
+        },
       }),
     ],
     splitChunks: {
@@ -116,7 +117,7 @@ const webpackConfig = {
   },
   plugins: [
     new CoreComponentsPathAliasPlugin({ folder: 'moderncssm' }),
-    new LoadablePlugin(),
+    // new LoadablePlugin(),
     new LazyComponentsPlugin({
       writeToDisk: true,
     }),

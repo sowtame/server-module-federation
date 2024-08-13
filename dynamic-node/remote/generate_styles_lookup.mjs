@@ -4,7 +4,7 @@ import { serializeStylesLookup } from 'used-styles'
 import { discoverProjectStyles } from 'used-styles/dist/es5/index-node.js'
 import { writeFileSync } from 'fs'
 
-const generate = async () => {
+const generateStylesLookup = async () => {
   const path = `${process.cwd()}/dist/client`
   const pathServer = `${process.cwd()}/dist/server`
 
@@ -14,5 +14,10 @@ const generate = async () => {
 
   writeFileSync(`${pathServer}/styles-lookup.json`, JSON.stringify(serializeStylesLookup(stylesLookup)))
 }
+const removeConvertAllCssFiles = async () => {}
 
-await generate()
+const initCritical = async () => {
+  await generateStylesLookup()
+}
+
+await initCritical

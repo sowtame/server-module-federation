@@ -4,9 +4,10 @@
   "scripts": {
     "start": "yarn build && yarn generate && yarn serve",
     "generate": "node ./generate_styles_lookup.mjs",
+    "prepare": "node ./prepare-css-for-critical.mjs",
     "serve": "node dist/server/main.js",
     "build": "yarn build:server && yarn build:client",
-    "build:client": "rimraf dist/client && npx webpack --mode=development --progress --config config/webpack.client.js",
+    "build:client": "rimraf dist/client && npx webpack --mode=production --progress --config config/webpack.client.js",
     "build:server": "rimraf dist/server && npx webpack --mode=development --progress --config config/webpack.server.js",
     "pure": "serve -s dist -l 8080"
   },

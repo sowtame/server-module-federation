@@ -1,6 +1,5 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -60,14 +59,7 @@ const webpackConfig = {
       },
     ],
   },
-  plugins: [
-    new CoreComponentsPathAliasPlugin({ folder: 'cssm' }),
-    new LoadablePlugin({
-      writeToDisk: true,
-    }),
-
-    ...moduleFederationPlugin.server,
-  ],
+  plugins: [new CoreComponentsPathAliasPlugin({ folder: 'cssm' }), ...moduleFederationPlugin.server],
   stats: {
     colors: true,
   },
