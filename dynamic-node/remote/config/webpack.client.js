@@ -1,12 +1,11 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-// const LoadablePlugin = require('@loadable/webpack-plugin')
 const shared = require('./webpack.shared')
 const moduleFederationPlugin = require('./module-federation')
 const LazyComponentsPlugin = require('./plugins/lazy-components')
-const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CoreComponentsPathAliasPlugin = require('./plugins/core-components-path-alias-plugin')
+const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const getCSSModuleLocalIdent = require('./utils/get-css-module-local-ident')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { Features } = require('lightningcss')
@@ -122,7 +121,7 @@ const webpackConfig = {
       writeToDisk: true,
     }),
     new CrtiticalCssPlugin({
-      writeToDisk: true,
+      apply: true,
     }),
     ...moduleFederationPlugin.client,
   ],
