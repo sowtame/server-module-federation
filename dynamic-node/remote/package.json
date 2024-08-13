@@ -2,7 +2,7 @@
   "name": "dynamic-node_remote",
   "version": "0.0.0",
   "scripts": {
-    "start": "yarn build && yarn prepare:css && yarn generate:styles:lookup && yarn serve",
+    "start": "yarn build && yarn serve",
     "generate:styles:lookup": "node ./generate-styles-lookup.mjs",
     "prepare:css": "node ./prepare-css-for-critical.mjs",
     "serve": "node dist/server/main.js",

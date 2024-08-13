@@ -1,3 +1,6 @@
+const removeConvertAllCssFiles = require('./utils/prepare-css-for-critical')
+const generateStylesLookup = require('./utils/generate-styles-lookup')
+
 const name = '@sowtame/critical-css'
 
 class CrtiticalCssPlugin {
@@ -13,8 +16,11 @@ class CrtiticalCssPlugin {
   apply(compiler) {
     this.compiler = compiler
 
-    compiler.hooks.assetEmitted.tap(name, (compilation) => {
+    compiler.hooks.assetEmitted.tap(name, async (compilation) => {
       if (!this.applied) {
+        await removeConvertAllCssFiles()
+        await generateStylesLookup()
+
         this.applied = true
       }
     })
