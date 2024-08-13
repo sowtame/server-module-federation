@@ -8,6 +8,8 @@ const CrtiticalCssPlugin = require('./plugins/critical-css-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CoreComponentsPathAliasPlugin = require('./plugins/core-components-path-alias-plugin')
 const getCSSModuleLocalIdent = require('./utils/get-css-module-local-ident')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const { Features } = require('lightningcss')
 
 const cssRegex = /\.css$/
 const cssModuleRegex = /\.module\.css$/
@@ -26,6 +28,45 @@ const webpackConfig = {
     filename: '[name].js',
     chunkFilename: '[name].js',
     publicPath: 'http://localhost:8080/static/',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin({
+        // minify: CssMinimizerPlugin.lightningCssMinify,
+        // minimizerOptions: {
+        //   // cssModules: true,
+        //   // targets: ['>= 0.25%'],
+        // },
+      }),
+    ],
+    splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        // styles: {
+        //   name: 'critical-css',
+        //   type: 'css/mini-extract',
+        //   chunks: 'all',
+        //   enforce: true,
+        // },
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   module: {
     rules: [

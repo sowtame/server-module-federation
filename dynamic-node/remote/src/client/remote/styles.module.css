@@ -1,3 +1,8 @@
+:root {
+  --color-blue-dark: rgb(0, 61, 184);
+  --color-blue-dark-test: var(--color-blue-dark);
+}
+
 .container {
-  background: blue;
+  background: var(--color-blue-dark-test);
 }

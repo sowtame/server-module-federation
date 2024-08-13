@@ -15,6 +15,7 @@ export interface ContentProps {
 const Remote: React.FC<ContentProps> = (props: ContentProps) => {
   return (
     <AppMounter url={props.url}>
+      <Button>test123</Button>
       <Switch>
         <Route exact path={siteMap.home}>
           <HomePage content={props.content} />
@@ -25,7 +26,6 @@ const Remote: React.FC<ContentProps> = (props: ContentProps) => {
         <Route exact path={siteMap.second}>
           <div className={styles.container} style={{ padding: '1rem', borderRadius: '0.25rem', border: '4px dashed #228b22' }}>
             <h2>App 2: 2 page</h2>
-            <Button>test123</Button>
             <Link to="/">home redirect</Link>
           </div>
         </Route>
