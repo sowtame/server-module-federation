@@ -2,7 +2,8 @@
   "name": "dynamic-node_remote",
   "version": "0.0.0",
   "scripts": {
-    "start": "yarn build && yarn serve",
+    "start": "yarn build && yarn generate && yarn serve",
+    "generate": "node ./generate_styles_lookup.mjs",
     "serve": "node dist/server/main.js",
     "build": "yarn build:server && yarn build:client",
     "build:client": "rimraf dist/client && npx webpack --mode=development --progress --config config/webpack.client.js",
@@ -26,7 +27,8 @@
     "react-dom": "^18.2.0",
     "react-helmet": "6.1.0",
     "react-router-dom": "^5.1.72",
-    "regenerator-runtime": "0.13.11"
+    "regenerator-runtime": "0.13.11",
+    "used-styles": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.21.4",
