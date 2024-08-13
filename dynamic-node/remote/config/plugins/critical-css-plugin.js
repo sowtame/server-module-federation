@@ -98,4 +98,3 @@ class CrtiticalCssPlugin {
 }
 
 module.exports = CrtiticalCssPlugin
-module.exports.default = CrtiticalCssPlugin

@@ -6,7 +6,6 @@ const postcssImport = require('postcss-import')
 
 module.exports = {
   plugins: [
-    //
     postcssImport(),
     postcssmixins(),
     // postcssGlobalData({
@@ -15,10 +14,7 @@ module.exports = {
     // cssvariables({
     //   preserve: false,
     // }),
-    // 'postcss-css-variables',
-    // 'postcss-custom-properties',
     // postcssCustomProperties({ preserve: false }),
     // postcssDiscardDuplicates(),
-    // [require('postcss-custom-properties'), { preserve: false }],
   ],
 }

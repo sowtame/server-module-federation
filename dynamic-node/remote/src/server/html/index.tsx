@@ -20,7 +20,7 @@ export const Html = ({ criticalCss, markupApp }: Props) => {
 
       <script async data-chunk="main" src="http://localhost:8080/static/index.js"></script>
       {usedStyles.map((file) => {
-        return <link data-chunk="CitiesModalMobile" rel="stylesheet" href={`http://localhost:8080/static/${file}`}></link>
+        return <link rel="stylesheet" href={`http://localhost:8080/static/${file}`}></link>
       })}
     </html>
   )
