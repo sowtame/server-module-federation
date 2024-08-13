@@ -38,7 +38,8 @@ const createAllTokensToOneFile = async (allCssFiles) => {
     }
   })
 
-  fs.writeFileSync(`${pathForCritical}/all-tokens.css`, global)
+  // for debug
+  // fs.writeFileSync(`${pathForCritical}/all-tokens.css`, global)
 
   return global
 }
@@ -48,7 +49,7 @@ const convertCssFile = async (pathCss, globalFile) => {
 
   const criticalCss = postcss([cssvariables({ preserve: false })]).process([globalFile, css].join('')).css
 
-  fs.writeFileSync(`${pathForCritical}/${pathCss}`, JSON.stringify(criticalCss))
+  fs.writeFileSync(`${pathForCritical}/${pathCss}`, criticalCss)
 }
 const removeConvertAllCssFiles = async () => {
   if (!fs.existsSync(pathForCritical)) {

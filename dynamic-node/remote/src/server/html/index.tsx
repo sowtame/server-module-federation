@@ -1,4 +1,5 @@
-import RootDev from '../../client/root'
+import { getUsedStyles } from 'used-styles'
+import { stylesLookup } from '../render-client'
 
 type Props = {
   criticalCss: string
@@ -6,6 +7,8 @@ type Props = {
 }
 
 export const Html = ({ criticalCss, markupApp }: Props) => {
+  const usedStyles = getUsedStyles(markupApp, stylesLookup)
+
   return (
     <html>
       <head>
@@ -16,6 +19,9 @@ export const Html = ({ criticalCss, markupApp }: Props) => {
       </body>
 
       <script async data-chunk="main" src="http://localhost:8080/static/index.js"></script>
+      {usedStyles.map((file) => {
+        return <link data-chunk="CitiesModalMobile" rel="stylesheet" href={`http://localhost:8080/static/${file}`}></link>
+      })}
     </html>
   )
 }
