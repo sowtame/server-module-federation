@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server'
 import { Request } from 'express'
 import fs from 'fs'
-import { getCriticalRules, loadSerializedLookup } from 'used-styles'
+import { loadSerializedLookup } from 'used-styles'
 import RootDev from '../client/root'
 import { Html } from './html'
 
@@ -14,9 +14,7 @@ export const stylesLookup = loadSerializedLookup(initialAssets)
 export default async function serverRender(req: Request, res, next) {
   const markupApp = renderToString(<RootDev url={req.url} />)
 
-  const criticalCss = getCriticalRules(markupApp, stylesLookup)
-
-  const markup = renderToString(<Html criticalCss={criticalCss} markupApp={markupApp} />)
+  const markup = renderToString(<Html markupApp={markupApp} />)
 
   res.statusCode = 200
   res.setHeader('Content-type', 'text/html')

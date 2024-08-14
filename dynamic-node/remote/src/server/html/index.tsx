@@ -1,18 +1,19 @@
-import { getUsedStyles } from 'used-styles'
+import { getCriticalRules, getUsedStyles } from 'used-styles'
 import { stylesLookup } from '../render-client'
+import { getClearCriticalCss } from './utils/get-clear-critical-rules'
 
 type Props = {
-  criticalCss: string
   markupApp: string
 }
 
-export const Html = ({ criticalCss, markupApp }: Props) => {
+export const Html = ({ markupApp }: Props) => {
   const usedStyles = getUsedStyles(markupApp, stylesLookup)
+  const criticalCss = getCriticalRules(markupApp, stylesLookup)
 
   return (
     <html>
       <head>
-        <style type="text/css" dangerouslySetInnerHTML={{ __html: criticalCss }} />
+        <style type="text/css" dangerouslySetInnerHTML={{ __html: getClearCriticalCss(criticalCss) }} />
       </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: markupApp }} />

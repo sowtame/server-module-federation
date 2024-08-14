@@ -5,7 +5,6 @@ var _fs = _interopRequireDefault(require('fs'))
 var _postcssCssVariables = _interopRequireDefault(require('postcss-css-variables'))
 var _path = require('path')
 var _scanDirectory = _interopRequireDefault(require('scan-directory'))
-console.log('🚀 ~ _scanDirectory:', _scanDirectory)
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : { default: e }
 }
