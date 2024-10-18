@@ -13,6 +13,7 @@
     "clean": "lerna run --scope=dynamic-node_* --parallel clean"
   },
   "devDependencies": {
+    "glob": "10.4.5",
     "lerna": "3.22.1"
   }
 }
